@@ -3635,6 +3635,12 @@ mdb_env_set_mapsize(MDB_env *env, size_t size)
 	return MDB_SUCCESS;
 }
 
+MDB_dbi
+mdb_env_get_maxdbs(MDB_env *env)
+{
+	return env->me_maxdbs - 2; /* Main and free DB excluded */
+}
+
 int
 mdb_env_set_maxdbs(MDB_env *env, MDB_dbi dbs)
 {

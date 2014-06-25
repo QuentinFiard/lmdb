@@ -780,6 +780,16 @@ int  mdb_env_set_maxreaders(MDB_env *env, unsigned int readers);
 	 */
 int  mdb_env_get_maxreaders(MDB_env *env, unsigned int *readers);
 
+	/** @brief Returns the maximum number of named databases for the environment.
+	 *
+	 * Currently a moderate number of slots are cheap but a huge number gets
+	 * expensive: 7-120 words per transaction, and every #mdb_dbi_open()
+	 * does a linear search of the opened slots.
+	 * @param[in] env An environment handle returned by #mdb_env_create()
+	 * @return The maximum number of databases
+	 */
+MDB_dbi  mdb_env_get_maxdbs(MDB_env *env);
+
 	/** @brief Set the maximum number of named databases for the environment.
 	 *
 	 * This function is only needed if multiple databases will be used in the
